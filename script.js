@@ -56,4 +56,20 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 
-renderer.render(scene, camera)
+
+// Animation
+const animation = () => {
+    // Update Object
+    cube1.rotation.x += 0.01
+    cube1.rotation.y += 0.01
+    cube2.rotation.x += 0.01
+    cube2.rotation.y += 0.01
+    cube3.rotation.x += 0.01
+    cube3.rotation.y += 0.01
+
+    // Render
+    renderer.render(scene, camera)
+
+    window.requestAnimationFrame(animation)
+}
+animation()
