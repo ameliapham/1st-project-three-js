@@ -22,8 +22,12 @@ mesh.position.set(1,-0.9,-2)
 //mesh.scale.x = 2.5
 //mesh.scale.y = 2
 //mesh.scale.z = 0.5
-mesh.scale.set(2.5,2,0.5)
+mesh.scale.set(2.5,2,3)
 
+// Rotation
+mesh.rotation.reorder('YXZ')
+mesh.rotation.y = Math.PI * 0.25
+mesh.rotation.x = Math.PI * 0.25
 
 
 
