@@ -69,6 +69,9 @@ const animation = () => {
 
     cube1.rotation.y = elapsedTime
 
+    // Camera position
+    camera.lookAt(cube2.position)
+
     // Render
     renderer.render(scene, camera)
 
