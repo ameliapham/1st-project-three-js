@@ -8,7 +8,6 @@ const scene = new THREE.Scene();
 
 // Group
 const group = new THREE.Group()
-group.rotation.x = 2
 scene.add(group)
 
 const cube1 = new THREE.Mesh(
@@ -48,7 +47,6 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 3
 scene.add(camera)
 
-camera.lookAt(group.position)
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -58,18 +56,18 @@ renderer.setSize(sizes.width, sizes.height)
 
 
 // Animation
-let time = Date.now()
+const clock = new THREE.Clock()
 
 const animation = () => {
     // Time
-    const currentTime = Date.now()
-    const deltaTime = currentTime - time
-    time = currentTime
+    const elapsedTime = clock.getElapsedTime()
     
     // Update Object
-    cube1.rotation.x += 0.001 * deltaTime
-    cube2.rotation.y += -0.001 * deltaTime
-    cube3.rotation.y += 0.001 * deltaTime
+    cube3.position.y = Math.sin(elapsedTime) * 2
+    cube2.position.x = Math.cos(elapsedTime) * 2
+    cube2.position.y = Math.sin(elapsedTime) * 2
+
+    cube1.rotation.y = elapsedTime
 
     // Render
     renderer.render(scene, camera)
