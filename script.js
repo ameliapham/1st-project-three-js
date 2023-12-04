@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+import * as THREE from 'three'
+import gsap from 'gsap'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -64,13 +65,15 @@ const animation = () => {
     
     // Update Object
     cube3.position.y = Math.sin(elapsedTime) * 2
+    gsap.to(cube3.position, {duration : 1, delay: 1, x: 2})
+
     cube2.position.x = Math.cos(elapsedTime) * 2
     cube2.position.y = Math.sin(elapsedTime) * 2
 
     cube1.rotation.y = elapsedTime
 
     // Camera position
-    camera.lookAt(cube2.position)
+    camera.lookAt(cube1.position)
 
     // Render
     renderer.render(scene, camera)
