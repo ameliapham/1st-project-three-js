@@ -58,11 +58,18 @@ renderer.setSize(sizes.width, sizes.height)
 
 
 // Animation
+let time = Date.now()
+
 const animation = () => {
+    // Time
+    const currentTime = Date.now()
+    const deltaTime = currentTime - time
+    time = currentTime
+    
     // Update Object
-    cube1.rotation.x += 0.01
-    cube2.rotation.y += -0.01
-    cube3.rotation.y += 0.01
+    cube1.rotation.x += 0.001 * deltaTime
+    cube2.rotation.y += -0.001 * deltaTime
+    cube3.rotation.y += 0.001 * deltaTime
 
     // Render
     renderer.render(scene, camera)
