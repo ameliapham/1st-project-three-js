@@ -44,7 +44,11 @@ const sizes = {
 }
 
 // Camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height)
+// const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height)
+const aspectRatio = sizes.width / sizes.height
+const camera = new THREE.OrthographicCamera(-1 * aspectRatio, 1 * aspectRatio, 1, -1, 1, 1000 )
+camera.position.x = 3
+camera.position.y = 3
 camera.position.z = 3
 scene.add(camera)
 
