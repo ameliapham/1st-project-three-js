@@ -44,7 +44,7 @@ const sizes = {
 }
 
 // Camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height)
 camera.position.z = 3
 scene.add(camera)
 
@@ -65,7 +65,7 @@ const animation = () => {
     
     // Update Object
     cube3.position.y = Math.sin(elapsedTime) * 2
-    gsap.to(cube3.position, {duration : 1, delay: 1, x: 2})
+    gsap.to(cube3.position, {duration : Math.cos(elapsedTime), delay: Math.cos(elapsedTime), x: 2})
 
     cube2.position.x = Math.cos(elapsedTime) * 2
     cube2.position.y = Math.sin(elapsedTime) * 2
