@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -31,7 +32,7 @@ const cube3 = new THREE.Mesh(
 cube3.position.set(-3,0,0)
 group.add(cube3)
 
-// Cursor
+/* Cursor
 const cursor = {
     x : 0,
     y : 0
@@ -39,7 +40,7 @@ const cursor = {
 window.addEventListener('mousemove', (eventCursor) => {
     cursor.x = eventCursor.clientX / sizes.width - 0.5
     cursor.y = - (eventCursor.clientY / sizes.height - 0.5)
-})
+})*/
 
 // Axes helper
 const axesHelper = new THREE.AxesHelper(2)
@@ -61,6 +62,10 @@ const camera = new THREE.PerspectiveCamera(100, sizes.width / sizes.height)
 camera.position.z = 3
 scene.add(camera)
 
+// Controls 
+const controls = new OrbitControls(camera, canvas)
+controls.target.y = 0
+controls.update()
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -85,11 +90,14 @@ const animation = () => {
 
     // cube1.rotation.y = elapsedTime
 
-    // Update Camera
+    /* Update Camera with JS
     camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3
     camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3
     camera.position.y = Math.sin(cursor.y * Math.PI * 2) * 3
-    camera.lookAt(group.position)
+    camera.lookAt(group.position) */
+
+    // Update caméra with Built-in Controls
+
 
     // Render
     renderer.render(scene, camera)
