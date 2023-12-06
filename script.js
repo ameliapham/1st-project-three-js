@@ -38,7 +38,7 @@ const cursor = {
 }
 window.addEventListener('mousemove', (eventCursor) => {
     cursor.x = eventCursor.clientX / sizes.width - 0.5
-    cursor.y = eventCursor.clientY / sizes.height - 0.5
+    cursor.y = - (eventCursor.clientY / sizes.height - 0.5)
 })
 
 // Axes helper
@@ -83,12 +83,13 @@ const animation = () => {
     cube2.position.x = Math.cos(elapsedTime) * 2
     cube2.position.y = Math.sin(elapsedTime) * 2
 
-    cube1.rotation.y = elapsedTime
+    // cube1.rotation.y = elapsedTime
 
     // Update Camera
-    camera.position.x = cursor.x
-    camera.position.y = - cursor.y
-    camera.lookAt(cube1.position)
+    camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3
+    camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3
+    camera.position.y = Math.sin(cursor.y * Math.PI * 2) * 3
+    camera.lookAt(group.position)
 
     // Render
     renderer.render(scene, camera)
