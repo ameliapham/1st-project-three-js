@@ -66,6 +66,13 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
 
 })
+window.addEventListener('dblclick', () => {
+    if (!document.fullscreenElement){
+        canvas.requestFullscreen()
+    } else {
+        document.exitFullscreen()
+    }
+})
 
 // Camera
 const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight)
