@@ -1,4 +1,7 @@
 * {
-    background: red;
     margin: 0px
+}
+
+html, body {
+    overflow: hidden;
 }
