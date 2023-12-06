@@ -28,9 +28,18 @@ const cube3 = new THREE.Mesh(
     new THREE.BoxGeometry(1,1,1),
     new THREE.MeshBasicMaterial({color: 'orange'})
 )
-cube3.position.set(-2,0,0)
+cube3.position.set(-3,0,0)
 group.add(cube3)
 
+// Cursor
+const cursor = {
+    x : 0,
+    y : 0
+}
+window.addEventListener('mousemove', (eventCursor) => {
+    cursor.x = eventCursor.clientX / sizes.width - 0.5
+    cursor.y = eventCursor.clientY / sizes.height - 0.5
+})
 
 // Axes helper
 const axesHelper = new THREE.AxesHelper(2)
@@ -44,11 +53,11 @@ const sizes = {
 }
 
 // Camera
-// const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height)
-const aspectRatio = sizes.width / sizes.height
-const camera = new THREE.OrthographicCamera(-1 * aspectRatio, 1 * aspectRatio, 1, -1, 1, 1000 )
-camera.position.x = 3
-camera.position.y = 3
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+// const aspectRatio = sizes.width / sizes.height
+// const camera = new THREE.OrthographicCamera(-5 * aspectRatio, 5 * aspectRatio, 3 * aspectRatio, -3 * aspectRatio, 1, 1000 )
+// camera.position.x = 1
+// camera.position.y = 1
 camera.position.z = 3
 scene.add(camera)
 
@@ -69,14 +78,14 @@ const animation = () => {
     
     // Update Object
     cube3.position.y = Math.sin(elapsedTime) * 2
-    gsap.to(cube3.position, {duration : Math.cos(elapsedTime), delay: Math.cos(elapsedTime), x: 2})
+    // gsap.to(cube3.position, {duration : Math.cos(elapsedTime), delay: Math.cos(elapsedTime), x: 2})
 
     cube2.position.x = Math.cos(elapsedTime) * 2
     cube2.position.y = Math.sin(elapsedTime) * 2
 
     cube1.rotation.y = elapsedTime
 
-    // Camera position
+    // Update Camera
     camera.lookAt(cube1.position)
 
     // Render
