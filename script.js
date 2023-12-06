@@ -53,7 +53,7 @@ const sizes = {
 }
 
 // Camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+const camera = new THREE.PerspectiveCamera(100, sizes.width / sizes.height)
 // const aspectRatio = sizes.width / sizes.height
 // const camera = new THREE.OrthographicCamera(-5 * aspectRatio, 5 * aspectRatio, 3 * aspectRatio, -3 * aspectRatio, 1, 1000 )
 // camera.position.x = 1
@@ -78,7 +78,7 @@ const animation = () => {
     
     // Update Object
     cube3.position.y = Math.sin(elapsedTime) * 2
-    // gsap.to(cube3.position, {duration : Math.cos(elapsedTime), delay: Math.cos(elapsedTime), x: 2})
+        // gsap.to(cube3.position, {duration : Math.cos(elapsedTime), delay: Math.cos(elapsedTime), x: 2})
 
     cube2.position.x = Math.cos(elapsedTime) * 2
     cube2.position.y = Math.sin(elapsedTime) * 2
@@ -86,6 +86,8 @@ const animation = () => {
     cube1.rotation.y = elapsedTime
 
     // Update Camera
+    camera.position.x = cursor.x
+    camera.position.y = - cursor.y
     camera.lookAt(cube1.position)
 
     // Render
