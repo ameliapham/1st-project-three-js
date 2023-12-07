@@ -12,9 +12,15 @@ const scene = new THREE.Scene();
 const group = new THREE.Group()
 scene.add(group)
 
-/*
+const cube1 = new THREE.Mesh(
+    new THREE.BoxGeometry(1,1,1),
+    new THREE.MeshBasicMaterial({color: 'pink'})
+)
+scene.add(cube1)
+
+/* BufferGeometry
 const geometry = new THREE.BufferGeometry()
-const count = 5000
+const count = 500
 const positionsArray = new Float32Array(count * 3 * 3)
 for(let i = 0; i < count * 3 * 3; i++){
     positionsArray[i] = Math.random() - 0.5
@@ -26,7 +32,8 @@ const cube1 = new THREE.Mesh(geometry, material)
 group.add(cube1)
 */
 
-const geometry = new THREE.BufferGeometry();
+// Sphere with BufferGeometry 
+/* const geometry = new THREE.BufferGeometry();
 const radius = 1; // Le rayon de la sphère
 const widthSegments = 32; // Nombre de segments horizontaux
 const heightSegments = 32; // Nombre de segments verticaux
@@ -63,7 +70,7 @@ geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(pos
 const material = new THREE.MeshBasicMaterial({ color: 'pink', wireframe: true });
 const sphere = new THREE.Mesh(geometry, material);
 group.add(sphere);
-
+*/
 
 const cube2 = new THREE.Mesh(
     new THREE.BoxGeometry(1,1,1),
