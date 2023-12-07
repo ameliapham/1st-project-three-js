@@ -12,8 +12,9 @@ const scene = new THREE.Scene();
 const group = new THREE.Group()
 scene.add(group)
 
+/*
 const geometry = new THREE.BufferGeometry()
-const count = 500
+const count = 5000
 const positionsArray = new Float32Array(count * 3 * 3)
 for(let i = 0; i < count * 3 * 3; i++){
     positionsArray[i] = Math.random() - 0.5
@@ -23,6 +24,45 @@ geometry.setAttribute('position', positionsAtribute)
 const material = new THREE.MeshBasicMaterial({color: 'pink', wireframe: true})
 const cube1 = new THREE.Mesh(geometry, material)
 group.add(cube1)
+*/
+
+const geometry = new THREE.BufferGeometry();
+const radius = 1; // Le rayon de la sphère
+const widthSegments = 32; // Nombre de segments horizontaux
+const heightSegments = 32; // Nombre de segments verticaux
+
+const positions = [];
+const phiLength = Math.PI * 2;
+const thetaLength = Math.PI;
+
+for (let latNumber = 0; latNumber <= heightSegments; latNumber++) {
+    const theta = latNumber * thetaLength / heightSegments;
+    const sinTheta = Math.sin(theta);
+    const cosTheta = Math.cos(theta);
+
+    for (let longNumber = 0; longNumber <= widthSegments; longNumber++) {
+        const phi = longNumber * phiLength / widthSegments;
+        const sinPhi = Math.sin(phi);
+        const cosPhi = Math.cos(phi);
+
+        const x = cosPhi * sinTheta;
+        const y = cosTheta;
+        const z = sinPhi * sinTheta;
+        const u = 1 - (longNumber / widthSegments);
+        const v = 1 - (latNumber / heightSegments);
+
+        positions.push(radius * x);
+        positions.push(radius * y);
+        positions.push(radius * z);
+    }
+}
+
+const positionNumComponents = 3;
+geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), positionNumComponents));
+
+const material = new THREE.MeshBasicMaterial({ color: 'pink', wireframe: true });
+const sphere = new THREE.Mesh(geometry, material);
+group.add(sphere);
 
 
 const cube2 = new THREE.Mesh(
