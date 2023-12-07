@@ -12,11 +12,18 @@ const scene = new THREE.Scene();
 const group = new THREE.Group()
 scene.add(group)
 
-const cube1 = new THREE.Mesh(
-    new THREE.BoxGeometry(1,1,1),
-    new THREE.MeshBasicMaterial({color: 'pink'})
-)
+const geometry = new THREE.BufferGeometry()
+const count = 500
+const positionsArray = new Float32Array(count * 3 * 3)
+for(let i = 0; i < count * 3 * 3; i++){
+    positionsArray[i] = Math.random() - 0.5
+}
+const positionsAtribute = new THREE.BufferAttribute(positionsArray, 3)
+geometry.setAttribute('position', positionsAtribute)
+const material = new THREE.MeshBasicMaterial({color: 'pink', wireframe: true})
+const cube1 = new THREE.Mesh(geometry, material)
 group.add(cube1)
+
 
 const cube2 = new THREE.Mesh(
     new THREE.BoxGeometry(1,1,1),
